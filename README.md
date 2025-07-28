@@ -1,7 +1,3 @@
-# Vulnet Security Scanner
-
-A browser extension that analyzes website security by checking SSL certificates, form encryption, tracking scripts, and potential scam indicators. The extension provides security scores and recommendations based on technical analysis performed locally in the browser.
-
 ## Overview
 
 This extension scans websites you visit and evaluates their security using JavaScript-based analysis. It checks SSL certificates, detects mixed content, analyzes forms for HTTPS usage, identifies tracking scripts, and looks for common phishing patterns. All analysis happens locally without sending data to external servers.
