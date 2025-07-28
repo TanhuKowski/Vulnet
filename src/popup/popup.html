@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vulnet Security Scanner</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="header-content">
+        <div class="logo-section">
+          <img src="../assets/icons/icon48.png" alt="Vulnet" class="logo">
+          <div class="title-section">
+            <h1 class="title">Vulnet</h1>
+            <p class="subtitle">Security Scanner</p>
+          </div>
+        </div>
+        <div class="overall-score" id="overall-score">
+          <span class="score-value" id="score-value">--</span>
+          <span class="score-label">Security Score</span>
+        </div>
+      </div>
+      <div class="site-info">
+        <span id="site-url">Loading...</span>
+      </div>
+      
+      <!-- ML Enhancement Indicator -->
+      <div class="ml-enhancement-indicator" id="ml-enhancement-indicator">
+        <div class="ml-status" id="ml-status">
+          <span class="ml-icon">🤖</span>
+          <span class="ml-text">AI Analysis: <span id="ml-status-text">Active</span></span>
+          <span class="ml-confidence" id="ml-confidence-display">Confidence: --</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="popup-main">
+      
+      <!-- ML Analysis Summary (Collapsible) -->
+      <div class="category ml-analysis-section" id="ml-analysis">
+        <div class="category-header" data-category="ml-analysis">
+          <div class="category-info">
+            <span class="category-icon">🧠</span>
+            <span class="category-title">AI Security Analysis</span>
+          </div>
+          <div class="category-status-container">
+            <span class="category-status" id="ml-analysis-status">AI Enhanced</span>
+            <span class="expand-arrow">▼</span>
+          </div>
+        </div>
+        <div class="category-details category-hidden" id="ml-analysis-details">
+          <div class="scoring-breakdown">
+            <div class="score-header">
+              <span class="category-score" id="ml-overall-confidence">--</span>
+              <span class="score-label">AI Confidence</span>
+            </div>
+            
+            <!-- ML Methodology Overview -->
+            <div class="factors-section">
+              <h4 class="factors-title">🔬 AI Analysis Methodology</h4>
+              
+              <!-- Threat Probability Factor -->
+              <div class="factor-item" id="threat-probability-factor">
+                <span class="factor-name">Threat Probability Assessment</span>
+                <span class="factor-impact" data-type="threat">--</span>
+                <span class="factor-details" id="threat-details">Calculating...</span>
+              </div>
+              
+              <!-- Feature Analysis Factor -->
+              <div class="factor-item" id="feature-analysis-factor">
+                <span class="factor-name">Feature Analysis (25 indicators)</span>
+                <span class="factor-impact" data-type="features">--</span>
+                <span class="factor-details" id="feature-details">Analyzing...</span>
+              </div>
+              
+              <!-- Score Enhancement Factor -->
+              <div class="factor-item" id="score-enhancement-factor">
+                <span class="factor-name">Score Enhancement Applied</span>
+                <span class="factor-impact" data-type="enhancement">--</span>
+                <span class="factor-details" id="enhancement-details">Processing...</span>
+              </div>
+              
+              <!-- Alexa Reputation Integration -->
+              <div class="factor-item" id="alexa-integration-factor">
+                <span class="factor-name">Domain Reputation (Alexa)</span>
+                <span class="factor-impact" data-type="alexa">--</span>
+                <span class="factor-details" id="alexa-integration-details">Checking...</span>
+              </div>
+              
+              <!-- ML Model Confidence -->
+              <div class="factor-item" id="ml-confidence-factor">
+                <span class="factor-name">Model Confidence & Certainty</span>
+                <span class="factor-impact" data-type="confidence">--</span>
+                <span class="factor-details" id="confidence-details">Evaluating...</span>
+              </div>
+              
+              <!-- Algorithm Performance -->
+              <div class="factor-item" id="algorithm-performance-factor">
+                <span class="factor-name">Algorithm Performance</span>
+                <span class="factor-impact" data-type="confidence">--</span>
+                <span class="factor-details" id="algorithm-details">Analyzing...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Connection Security Category -->
+      <div class="category" id="connection-security">
+        <div class="category-header" data-category="connection">
+          <div class="category-info">
+            <span class="category-icon">🔒</span>
+            <span class="category-title">Connection Security</span>
+          </div>
+          <div class="category-status-container">
+            <span class="category-status" id="connection-status">Scanning...</span>
+            <span class="expand-arrow">▼</span>
+          </div>
+        </div>
+        <div class="category-details category-hidden" id="connection-security-details">
+          <div class="scoring-breakdown">
+            <div class="score-header">
+              <span class="category-score" id="connection-score">--</span>
+              <span class="score-label">Connection Score</span>
+            </div>
+            <div class="score-factors">
+              <div class="factor-item" id="ssl-factor">
+                <span class="factor-name">SSL Certificate</span>
+                <span class="factor-impact" data-type="ssl">--</span>
+                <span class="factor-details" id="ssl-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="https-factor">
+                <span class="factor-name">HTTPS Protocol</span>
+                <span class="factor-impact" data-type="https">--</span>
+                <span class="factor-details" id="https-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="mixed-content-factor">
+                <span class="factor-name">Mixed Content</span>
+                <span class="factor-impact" data-type="mixed">--</span>
+                <span class="factor-details" id="mixed-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="certificate-factor">
+                <span class="factor-name">Certificate Validity</span>
+                <span class="factor-impact" data-type="cert">--</span>
+                <span class="factor-details" id="cert-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="hsts-factor">
+                <span class="factor-name">HSTS Security</span>
+                <span class="factor-impact" data-type="hsts">--</span>
+                <span class="factor-details" id="hsts-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="protocol-factor">
+                <span class="factor-name">TLS Protocol</span>
+                <span class="factor-impact" data-type="protocol">--</span>
+                <span class="factor-details" id="protocol-details">Checking...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form Safety Category -->
+      <div class="category" id="form-safety">
+        <div class="category-header" data-category="form">
+          <div class="category-info">
+            <span class="category-icon">📝</span>
+            <span class="category-title">Form Safety</span>
+          </div>
+          <div class="category-status-container">
+            <span class="category-status" id="form-status">Scanning...</span>
+            <span class="expand-arrow">▼</span>
+          </div>
+        </div>
+        <div class="category-details category-hidden" id="form-safety-details">
+          <div class="scoring-breakdown">
+            <div class="score-header">
+              <span class="category-score" id="form-score">--</span>
+              <span class="score-label">Form Security Score</span>
+            </div>
+            <div class="score-factors">
+              <div class="factor-item" id="form-encryption-factor">
+                <span class="factor-name">Form Encryption</span>
+                <span class="factor-impact" data-type="form-encrypt">--</span>
+                <span class="factor-details" id="form-encrypt-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="password-security-factor">
+                <span class="factor-name">Password Field Security</span>
+                <span class="factor-impact" data-type="password">--</span>
+                <span class="factor-details" id="password-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="csrf-factor">
+                <span class="factor-name">CSRF Protection</span>
+                <span class="factor-impact" data-type="csrf">--</span>
+                <span class="factor-details" id="csrf-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="input-validation-factor">
+                <span class="factor-name">Input Validation</span>
+                <span class="factor-impact" data-type="validation">--</span>
+                <span class="factor-details" id="validation-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="autocomplete-factor">
+                <span class="factor-name">Autocomplete Security</span>
+                <span class="factor-impact" data-type="autocomplete">--</span>
+                <span class="factor-details" id="autocomplete-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="form-target-factor">
+                <span class="factor-name">Form Target Security</span>
+                <span class="factor-impact" data-type="target">--</span>
+                <span class="factor-details" id="target-details">Checking...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Privacy Protection Category -->
+      <div class="category" id="privacy-protection">
+        <div class="category-header" data-category="privacy">
+          <div class="category-info">
+            <span class="category-icon">🛡️</span>
+            <span class="category-title">Privacy Protection</span>
+          </div>
+          <div class="category-status-container">
+            <span class="category-status" id="privacy-status">Scanning...</span>
+            <span class="expand-arrow">▼</span>
+          </div>
+        </div>
+        <div class="category-details category-hidden" id="privacy-protection-details">
+          <div class="scoring-breakdown">
+            <div class="score-header">
+              <span class="category-score" id="privacy-score">--</span>
+              <span class="score-label">Privacy Score</span>
+            </div>
+            <div class="score-factors">
+              <div class="factor-item" id="tracking-scripts-factor">
+                <span class="factor-name">Tracking Scripts</span>
+                <span class="factor-impact" data-type="tracking">--</span>
+                <span class="factor-details" id="tracking-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="social-widgets-factor">
+                <span class="factor-name">Social Media Widgets</span>
+                <span class="factor-impact" data-type="social">--</span>
+                <span class="factor-details" id="social-details">Checking...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scam Detection Category -->
+      <div class="category" id="scam-detection">
+        <div class="category-header" data-category="scam">
+          <div class="category-info">
+            <span class="category-icon">⚠️</span>
+            <span class="category-title">Scam Detection</span>
+          </div>
+          <div class="category-status-container">
+            <span class="category-status" id="scam-status">Scanning...</span>
+            <span class="expand-arrow">▼</span>
+          </div>
+        </div>
+        <div class="category-details category-hidden" id="scam-detection-details">
+          <div class="scoring-breakdown">
+            <div class="score-header">
+              <span class="category-score" id="scam-score">--</span>
+              <span class="score-label">Threat Detection Score</span>
+            </div>
+            <div class="score-factors">
+              <div class="factor-item" id="url-reputation-factor">
+                <span class="factor-name">URL Reputation</span>
+                <span class="factor-impact" data-type="url-rep">--</span>
+                <span class="factor-details" id="url-rep-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="phishing-indicators-factor">
+                <span class="factor-name">Phishing Indicators</span>
+                <span class="factor-impact" data-type="phishing">--</span>
+                <span class="factor-details" id="phishing-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="domain-age-factor">
+                <span class="factor-name">Domain Analysis</span>
+                <span class="factor-impact" data-type="domain">--</span>
+                <span class="factor-details" id="domain-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="content-analysis-factor">
+                <span class="factor-name">Content Analysis</span>
+                <span class="factor-impact" data-type="content">--</span>
+                <span class="factor-details" id="content-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="ml-prediction-factor">
+                <span class="factor-name">AI Threat Analysis</span>
+                <span class="factor-impact" data-type="ml">--</span>
+                <span class="factor-details" id="ml-details">Checking...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Code Safety Category -->
+      <div class="category" id="code-safety">
+        <div class="category-header" data-category="code">
+          <div class="category-info">
+            <span class="category-icon">💻</span>
+            <span class="category-title">Code Safety</span>
+          </div>
+          <div class="category-status-container">
+            <span class="category-status" id="code-status">Scanning...</span>
+            <span class="expand-arrow">▼</span>
+          </div>
+        </div>
+        <div class="category-details category-hidden" id="code-safety-details">
+          <div class="scoring-breakdown">
+            <div class="score-header">
+              <span class="category-score" id="code-score">--</span>
+              <span class="score-label">Code Safety Score</span>
+            </div>
+            <div class="score-factors">
+              <div class="factor-item" id="script-analysis-factor">
+                <span class="factor-name">JavaScript Analysis</span>
+                <span class="factor-impact" data-type="script">--</span>
+                <span class="factor-details" id="script-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="malware-detection-factor">
+                <span class="factor-name">Malware Detection</span>
+                <span class="factor-impact" data-type="malware">--</span>
+                <span class="factor-details" id="malware-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="code-integrity-factor">
+                <span class="factor-name">Code Integrity</span>
+                <span class="factor-impact" data-type="integrity">--</span>
+                <span class="factor-details" id="integrity-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="external-scripts-factor">
+                <span class="factor-name">External Scripts</span>
+                <span class="factor-impact" data-type="ext-script">--</span>
+                <span class="factor-details" id="ext-script-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="iframe-security-factor">
+                <span class="factor-name">iFrame Security</span>
+                <span class="factor-impact" data-type="iframe">--</span>
+                <span class="factor-details" id="iframe-details">Checking...</span>
+              </div>
+              <div class="factor-item" id="dom-manipulation-factor">
+                <span class="factor-name">DOM Manipulation</span>
+                <span class="factor-impact" data-type="dom">--</span>
+                <span class="factor-details" id="dom-details">Checking...</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html> 

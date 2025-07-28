@@ -1,0 +1,92 @@
+{
+  "manifest_version": 3,
+  "name": "Vulnet Security Scanner",
+  "version": "2.0.0",
+  "description": "Advanced security scanner with comprehensive threat detection and detailed technical scoring",
+  
+  "icons": {
+    "16": "src/assets/icons/icon16.png",
+    "48": "src/assets/icons/icon48.png",
+    "128": "src/assets/icons/icon128.png"
+  },
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "notifications",
+    "background"
+  ],
+  
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "src/utils/security-scorer.js",
+        "src/modules/connection-security/ssl-checker.js",
+        "src/modules/connection-security/mixed-content-detector.js",
+        "src/modules/form-safety/insecure-forms-detector.js",
+        "src/modules/privacy-protection/third-party-tracker.js",
+        "src/modules/scam-detection/phishing-detector.js",
+        "src/modules/scam-detection/url-reputation.js",
+        "src/content/content-script.js"
+      ],
+      "css": [
+        "src/content/content-styles.css"
+      ],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Vulnet Security Scanner",
+    "default_icon": {
+      "16": "src/assets/icons/icon16.png",
+      "48": "src/assets/icons/icon48.png",
+      "128": "src/assets/icons/icon128.png"
+    }
+  },
+  
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/modules/connection-security/*.js",
+        "src/modules/form-safety/*.js",
+        "src/modules/privacy-protection/*.js",
+        "src/modules/scam-detection/*.js",
+        "src/utils/*.js",
+        "src/assets/icons/*.png",
+        "training/scripts/vulnet_optimized_model.json",
+        "training/scripts/alexa.csv",
+        "src/popup/popup.css",
+        "src/content/content-styles.css"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  
+  "commands": {
+    "run-security-scan": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Run security scan"
+    },
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+V",
+        "mac": "Command+Shift+V"
+      }
+    }
+  }
+}

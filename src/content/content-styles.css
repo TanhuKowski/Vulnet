@@ -1,0 +1,201 @@
+/* Vulnet Security Extension - Content Styles */
+
+/* Security Alert Overlay Styles */
+.vulnet-security-alert {
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  z-index: 2147483647 !important;
+  max-width: 400px !important;
+  padding: 16px 20px !important;
+  background: #fff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
+  animation: vulnet-slide-in 0.3s ease-out !important;
+}
+
+.vulnet-security-alert.critical {
+  border-left: 5px solid #F44336 !important;
+  background: linear-gradient(135deg, #ffebee, #ffffff) !important;
+}
+
+.vulnet-security-alert.warning {
+  border-left: 5px solid #FF9800 !important;
+  background: linear-gradient(135deg, #fff8e1, #ffffff) !important;
+}
+
+.vulnet-security-alert.info {
+  border-left: 5px solid #2196F3 !important;
+  background: linear-gradient(135deg, #e3f2fd, #ffffff) !important;
+}
+
+.vulnet-alert-header {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-bottom: 8px !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+}
+
+.vulnet-alert-icon {
+  font-size: 20px !important;
+}
+
+.vulnet-alert-message {
+  color: #555 !important;
+  margin-bottom: 12px !important;
+}
+
+.vulnet-alert-actions {
+  display: flex !important;
+  gap: 8px !important;
+  justify-content: flex-end !important;
+}
+
+.vulnet-alert-button {
+  padding: 6px 12px !important;
+  border: none !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.vulnet-alert-button.primary {
+  background: #2196F3 !important;
+  color: white !important;
+}
+
+.vulnet-alert-button.secondary {
+  background: #f5f5f5 !important;
+  color: #666 !important;
+}
+
+.vulnet-alert-button:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Security Badge Styles */
+.vulnet-security-badge {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 2147483646 !important;
+  width: 60px !important;
+  height: 60px !important;
+  background: #2196F3 !important;
+  color: white !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-weight: bold !important;
+  font-size: 14px !important;
+  box-shadow: 0 4px 16px rgba(33, 150, 243, 0.3) !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.vulnet-security-badge:hover {
+  transform: scale(1.1) !important;
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4) !important;
+}
+
+.vulnet-security-badge.excellent {
+  background: #4CAF50 !important;
+}
+
+.vulnet-security-badge.good {
+  background: #8BC34A !important;
+}
+
+.vulnet-security-badge.fair {
+  background: #FFC107 !important;
+  color: #333 !important;
+}
+
+.vulnet-security-badge.poor {
+  background: #FF9800 !important;
+}
+
+.vulnet-security-badge.dangerous {
+  background: #F44336 !important;
+  animation: vulnet-pulse 2s infinite !important;
+}
+
+/* Form Security Indicators */
+.vulnet-form-indicator {
+  position: absolute !important;
+  top: -8px !important;
+  right: -8px !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 50% !important;
+  font-size: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 1000 !important;
+}
+
+.vulnet-form-indicator.secure {
+  background: #4CAF50 !important;
+  color: white !important;
+}
+
+.vulnet-form-indicator.insecure {
+  background: #F44336 !important;
+  color: white !important;
+}
+
+/* Link Security Indicators */
+.vulnet-link-warning {
+  position: relative !important;
+}
+
+.vulnet-link-warning::after {
+  content: "⚠️" !important;
+  position: absolute !important;
+  right: -20px !important;
+  top: 0 !important;
+  font-size: 12px !important;
+}
+
+/* Animations */
+@keyframes vulnet-slide-in {
+  from {
+    transform: translateX(100%) !important;
+    opacity: 0 !important;
+  }
+  to {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+  }
+}
+
+@keyframes vulnet-pulse {
+  0%, 100% {
+    transform: scale(1) !important;
+  }
+  50% {
+    transform: scale(1.05) !important;
+  }
+}
+
+/* Hidden elements for testing */
+.vulnet-hidden {
+  display: none !important;
+}
+
+/* Override any conflicting styles */
+.vulnet-security-alert * {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}

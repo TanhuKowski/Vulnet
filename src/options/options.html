@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnet Security Settings</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            color: #2196F3;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        
+        .section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .setting {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .setting label {
+            flex: 1;
+            color: #555;
+        }
+        
+        .setting input[type="checkbox"] {
+            transform: scale(1.2);
+        }
+        
+        .setting input[type="range"] {
+            width: 200px;
+        }
+        
+        .setting select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .description {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+        
+        .save-button {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .save-button:hover {
+            background: #1976D2;
+        }
+        
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛡️ Vulnet Security Settings</h1>
+        
+        <div class="section">
+            <h2>Real-time Protection</h2>
+            <div class="setting">
+                <label for="real-time-scanning">
+                    Enable real-time security scanning
+                    <div class="description">Continuously monitor pages for security threats</div>
+                </label>
+                <input type="checkbox" id="real-time-scanning" checked>
+            </div>
+            <div class="setting">
+                <label for="auto-block-threats">
+                    Automatically block detected threats
+                    <div class="description">Block access to dangerous websites automatically</div>
+                </label>
+                <input type="checkbox" id="auto-block-threats" checked>
+            </div>
+            <div class="setting">
+                <label for="notification-alerts">
+                    Show security notifications
+                    <div class="description">Display alerts for security issues</div>
+                </label>
+                <input type="checkbox" id="notification-alerts" checked>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Scanning Sensitivity</h2>
+            <div class="setting">
+                <label for="threat-sensitivity">
+                    Threat detection sensitivity
+                    <div class="description">Higher sensitivity may produce more false positives</div>
+                </label>
+                <select id="threat-sensitivity">
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high">High</option>
+                    <option value="maximum">Maximum</option>
+                </select>
+            </div>
+            <div class="setting">
+                <label for="privacy-protection">
+                    Privacy protection level
+                    <div class="description">Level of tracking and privacy protection</div>
+                </label>
+                <input type="range" id="privacy-protection" min="1" max="5" value="3">
+                <span id="privacy-level-text">Medium</span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>AI & Machine Learning</h2>
+            <div class="setting">
+                <label for="ml-analysis">
+                    Enable ML threat analysis
+                    <div class="description">Use machine learning for enhanced threat detection</div>
+                </label>
+                <input type="checkbox" id="ml-analysis" checked>
+            </div>
+            <div class="setting">
+                <label for="ml-updates">
+                    Automatic model updates
+                    <div class="description">Keep ML models updated with latest threat data</div>
+                </label>
+                <input type="checkbox" id="ml-updates" checked>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Data & Storage</h2>
+            <div class="setting">
+                <label for="cache-results">
+                    Cache scan results
+                    <div class="description">Store results to improve performance</div>
+                </label>
+                <input type="checkbox" id="cache-results" checked>
+            </div>
+            <div class="setting">
+                <label for="anonymous-stats">
+                    Anonymous usage statistics
+                    <div class="description">Help improve Vulnet by sharing anonymous data</div>
+                </label>
+                <input type="checkbox" id="anonymous-stats">
+            </div>
+        </div>
+        
+        <button class="save-button" onclick="saveSettings()">Save Settings</button>
+        <div class="status" id="status"></div>
+    </div>
+    
+    <script src="options.js"></script>
+</body>
+</html>
