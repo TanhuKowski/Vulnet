@@ -1,3 +1,7 @@
+# Vulnet Security Scanner
+
+A browser extension that analyzes website security by checking SSL certificates, form encryption, tracking scripts, and potential scam indicators. The extension provides security scores and recommendations based on technical analysis performed locally in the browser.
+
 ## Overview
 
 This extension scans websites you visit and evaluates their security using JavaScript-based analysis. It checks SSL certificates, detects mixed content, analyzes forms for HTTPS usage, identifies tracking scripts, and looks for common phishing patterns. All analysis happens locally without sending data to external servers.
@@ -27,6 +31,64 @@ This extension scans websites you visit and evaluates their security using JavaS
 - Checks domain reputation using local pattern matching
 - Identifies suspicious domain characteristics (unusual TLDs, random strings)
 - Detects content patterns commonly used in phishing attempts
+
+### Code Safety
+- Analyzes JavaScript execution and potential security risks
+- Detects dangerous functions and code injection vulnerabilities
+- Checks for Content Security Policy (CSP) implementation
+- Identifies suspicious script behavior and potential malware
+- Evaluates third-party script loading and execution patterns
+
+### AI Analysis
+- Uses a pre-trained model to classify threats based on multiple factors
+- Combines technical indicators with pattern recognition
+- Provides confidence scores for threat assessments 
+
+## Technical Implementation
+
+The extension is built using Manifest V3 and consists of several JavaScript modules that analyze different security aspects.
+
+### Architecture
+- **Content Scripts**: Injected into web pages to analyze DOM, resources, and network requests
+- **Service Worker**: Handles background tasks and coordinates between components
+- **Popup Interface**: Displays security analysis results and detailed breakdowns
+- **Security Modules**: Specialized modules for SSL, forms, privacy, and scam detection
+
+### Analysis Methods
+Security analysis is performed using DOM inspection, network resource enumeration, and pattern matching against known threat indicators. The extension reads certificate information through browser APIs and analyzes page structure for security issues.
+
+### Scoring System
+Each security category receives a score from 0-100 based on specific criteria:
+- Connection Security: SSL validity, protocol strength, mixed content presence
+- Form Safety: HTTPS usage, validation attributes, security headers
+- Privacy Protection: Number and type of tracking scripts detected
+- Scam Detection: Domain reputation, URL patterns, content analysis
+- Code Safety: JavaScript security, CSP headers, script execution safety
+- Overall score is calculated as weighted average of individual categories
+
+## Installation
+
+1. Download or clone the extension files
+2. Open Chrome and navigate to `chrome://extensions/`
+3. Enable Developer Mode using the toggle in the top right
+4. Click "Load unpacked" and select the extension directory
+5. The Vulnet icon will appear in your browser toolbar
+
+The extension requires permissions for active tab access (to analyze visited websites) and storage (to cache security data).
+
+## Usage
+
+After installation, the extension automatically analyzes each website you visit. Click the Vulnet icon in your browser toolbar to view security analysis results.
+
+### Security Reports
+The popup displays scores for different security categories:
+- **Connection Security**: SSL certificate validity and encryption status
+- **Form Safety**: Whether forms use HTTPS and have proper validation
+- **Privacy Protection**: Tracking scripts and social widgets detected
+- **Scam Detection**: Domain reputation and URL pattern analysis
+- **Code Safety**: JavaScript security analysis and CSP evaluation
+
+Scores range from 0-100, with higher scores indicating better security. Click "View Details" for specific findings and recommendations.
 
 ## Machine Learning Training
 
@@ -128,50 +190,6 @@ Set up automated retraining pipelines:
 2. Weekly model retraining with updated data
 3. Automated testing and validation
 4. Deployment to production extension
-
-## Technical Implementation
-
-The extension is built using Manifest V3 and consists of several JavaScript modules that analyze different security aspects.
-
-### Architecture
-- **Content Scripts**: Injected into web pages to analyze DOM, resources, and network requests
-- **Service Worker**: Handles background tasks and coordinates between components
-- **Popup Interface**: Displays security analysis results and detailed breakdowns
-- **Security Modules**: Specialized modules for SSL, forms, privacy, and scam detection
-
-### Analysis Methods
-Security analysis is performed using DOM inspection, network resource enumeration, and pattern matching against known threat indicators. The extension reads certificate information through browser APIs and analyzes page structure for security issues.
-
-### Scoring System
-Each security category receives a score from 0-100 based on specific criteria:
-- Connection Security: SSL validity, protocol strength, mixed content presence
-- Form Safety: HTTPS usage, validation attributes, security headers
-- Privacy Protection: Number and type of tracking scripts detected
-- Scam Detection: Domain reputation, URL patterns, content analysis
-- Overall score is calculated as weighted average of individual categories
-
-## Installation
-
-1. Download or clone the extension files
-2. Open Chrome and navigate to `chrome://extensions/`
-3. Enable Developer Mode using the toggle in the top right
-4. Click "Load unpacked" and select the extension directory
-5. The Vulnet icon will appear in your browser toolbar
-
-The extension requires permissions for active tab access (to analyze visited websites) and storage (to cache security data).
-
-## Usage
-
-After installation, the extension automatically analyzes each website you visit. Click the Vulnet icon in your browser toolbar to view security analysis results.
-
-### Security Reports
-The popup displays scores for different security categories:
-- **Connection Security**: SSL certificate validity and encryption status
-- **Form Safety**: Whether forms use HTTPS and have proper validation
-- **Privacy Protection**: Tracking scripts and social widgets detected
-- **Scam Detection**: Domain reputation and URL pattern analysis
-
-Scores range from 0-100, with higher scores indicating better security. Click "View Details" for specific findings and recommendations.
 
 ## Privacy
 
