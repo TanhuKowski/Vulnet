@@ -6,9 +6,6 @@ if (window.securityScannerInitialized) {
 } else {
   window.securityScannerInitialized = true;
 
-// Security modules initialization
-// Demo version uses simplified inline modules
-
 /** Security scanner class - orchestrates all security analysis */
 class SecurityScanner {
   constructor() {
